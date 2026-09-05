@@ -1,0 +1,325 @@
+/* ============================================================
+   Wishes.module.css
+   Wishes / Kind Words section — warm beige background,
+   botanical accents, form card + wish list.
+   Visually consistent with RSVP section.
+   ============================================================ */
+
+/* ── Section root ────────────────────────────────────────── */
+.wishes {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-primary);
+  padding: var(--space-12) 0 var(--space-16);
+  overflow: hidden;
+}
+
+/* ── Top botanical header ─────────────────────────────────── */
+.topDecoration {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+  margin-bottom: var(--space-8);
+}
+
+.dividerLeft {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform-origin: left top;
+}
+
+.dividerRight {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: right top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform: scaleX(-1);
+  transform-origin: right top;
+}
+
+/* ── Heading block ───────────────────────────────────────── */
+.headingBlock {
+  text-align: center;
+  padding: 0 var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 5.5vw, 2rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--lh-tight);
+}
+
+.headingRule {
+  width: 64px;
+  height: 1.5px;
+  background: var(--color-text-primary);
+  border: none;
+  margin: 0;
+}
+
+/* ── Intro paragraph ─────────────────────────────────────── */
+.intro {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 32ch;
+  margin: 0 auto var(--space-8);
+  padding: 0 var(--space-6);
+}
+
+/* ── Form card ───────────────────────────────────────────── */
+.formCard {
+  margin: 0 var(--space-6);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  box-shadow: 0 2px 12px rgba(59, 35, 20, 0.06);
+  margin-bottom: var(--space-10);
+}
+
+/* ── Field group ─────────────────────────────────────────── */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ── Label ───────────────────────────────────────────────── */
+.label {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+/* ── Text input ──────────────────────────────────────────── */
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-primary);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px var(--space-4);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.input:focus {
+  border-color: var(--color-text-secondary);
+  box-shadow: 0 0 0 3px rgba(91, 61, 46, 0.1);
+}
+
+.input.error {
+  border-color: #b94a4a;
+}
+
+/* ── Textarea ────────────────────────────────────────────── */
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-primary);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px var(--space-4);
+  min-height: 96px;
+  resize: vertical;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  outline: none;
+  line-height: var(--lh-relaxed);
+}
+
+.textarea::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.textarea:focus {
+  border-color: var(--color-text-secondary);
+  box-shadow: 0 0 0 3px rgba(91, 61, 46, 0.1);
+}
+
+.textarea.error {
+  border-color: #b94a4a;
+}
+
+/* ── Field error ─────────────────────────────────────────── */
+.fieldError {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: #b94a4a;
+  margin: 0;
+}
+
+/* ── Submit button ───────────────────────────────────────── */
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: #5B6B78;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.05em;
+  padding: 12px var(--space-6);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-base), opacity var(--transition-base);
+  margin-top: var(--space-2);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #4A5863;
+}
+
+.submitBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.submitBtn:focus-visible {
+  outline: 2px solid var(--color-divider);
+  outline-offset: 3px;
+}
+
+.submitIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Success inline message (inside the form) ────────────── */
+.successMessage {
+  font-family: var(--font-serif);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: #6B8F5E;
+  text-align: center;
+  padding: var(--space-4) 0 var(--space-2);
+  margin: 0;
+}
+
+/* ── Form-level error banner ─────────────────────────────── */
+.formError {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: #b94a4a;
+  background: rgba(185, 74, 74, 0.07);
+  border: 1px solid rgba(185, 74, 74, 0.2);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+}
+
+/* ── Wishes list section ─────────────────────────────────── */
+.listSection {
+  padding: 0 var(--space-6);
+}
+
+.listHeading {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0 0 var(--space-5) 0;
+}
+
+.wishList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Wish card ───────────────────────────────────────────── */
+.wishCard {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-5);
+  box-shadow: 0 1px 6px rgba(59, 35, 20, 0.05);
+}
+
+.wishName {
+  font-family: var(--font-serif);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.wishMessage {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+  word-break: break-word;
+}
+
+/* ── Empty state ─────────────────────────────────────────── */
+.emptyState {
+  font-family: var(--font-serif);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-8) 0;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Loading skeleton ────────────────────────────────────── */
+.loadingState {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-6) 0;
+  margin: 0;
+}

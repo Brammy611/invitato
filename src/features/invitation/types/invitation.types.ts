@@ -238,6 +238,14 @@ export interface Wish {
   submittedAt?: ISODateTime
 }
 
+/** Wishes section configuration */
+export interface WishesSection {
+  /** Section heading */
+  heading?: string
+  /** Introductory description */
+  description?: string
+}
+
 /* ------------------------------------------------------------
    OPENING / CLOSING
    ------------------------------------------------------------ */
@@ -285,6 +293,7 @@ export interface InvitationData {
   media?: Media
   music?: Music
   rsvp: RSVPSection
+  wishes?: WishesSection
   opening: Opening
   closing: Closing
 }

@@ -1,4 +1,4 @@
-﻿import RootLayout from './layout'
+import RootLayout from './layout'
 import InvitationLayout from '../features/invitation/components/InvitationLayout/InvitationLayout'
 import Opening from '../features/invitation/components/Opening/Opening'
 import Hero from '../features/invitation/components/Hero/Hero'
@@ -9,6 +9,7 @@ import Event from '../features/invitation/components/Event/Event'
 import Location from '../features/invitation/components/Location/Location'
 import Memories from '../features/invitation/components/Memories/Memories'
 import RSVP from '../features/invitation/components/RSVP/RSVP'
+import Wishes from '../features/invitation/components/Wishes/Wishes'
 import Closing from '../features/invitation/components/Closing/Closing'
 import { useInvitation } from '../features/invitation/hooks/useInvitation'
 import { invitationData } from '../features/invitation/data/invitation.data'
@@ -62,6 +63,9 @@ export default function Page() {
               }}
             />
             <RSVP data={{ rsvp: invitationData.rsvp }} />
+
+            {/* Wishes — Kind Words */}
+            <Wishes data={{ wishes: invitationData.wishes }} />
             
             {/* Final Section */}
             <Closing

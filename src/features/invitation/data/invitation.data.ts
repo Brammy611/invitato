@@ -197,6 +197,14 @@ export const invitationData: InvitationData = {
   },
 
   /* ----------------------------------------------------------
+     WISHES
+     ---------------------------------------------------------- */
+  wishes: {
+    heading: 'KIND WORDS',
+    description: 'Your kind words mean so much to us. Please leave us a message.',
+  },
+
+  /* ----------------------------------------------------------
      OPENING
      ---------------------------------------------------------- */
   opening: {
@@ -211,7 +219,7 @@ export const invitationData: InvitationData = {
     heading: 'THANK YOU,',
     message: '', // not strictly needed by the new design but kept for safety
     hashtag: '#RickyFellinlove',
-    backgroundImage: '/assets/images/gallery/background.jpg',
+    backgroundImage: '/assets/images/gallery/1.png',
     decorationImage: '/assets/images/icons/leftDecoration.png'
   },
 }
