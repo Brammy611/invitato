@@ -1,13 +1,3 @@
-/* ============================================================
-   wishes.service.ts
-   Client-side Wishes service.
-
-   Since this is a pure Vite SPA (no Next.js / no server),
-   persistence is handled via src/lib/db.ts (localStorage).
-   The service validates the payload and delegates to the db layer.
-   ============================================================ */
-
-import { saveWish, getAllWishes, type WishRecord } from '../../../lib/db'
 import { validateWish } from '../../../lib/validation'
 
 export interface WishPayload {
@@ -34,26 +24,10 @@ export interface WishesListResponse {
   error?: string
 }
 
-/** Map a WishRecord to a WishResult (public-safe shape) */
-function toResult(record: WishRecord): WishResult {
-  return {
-    id: record.id,
-    name: record.name,
-    message: record.message,
-    createdAt: record.createdAt,
-  }
-}
-
 /**
- * submitWish
- *
- * Validates + persists a wish via localStorage.
- * Simulates ~600ms network latency for realistic UX.
+ * Validate for immediate UX feedback, then submit to the server API.
  */
 export async function submitWish(payload: WishPayload): Promise<WishesResponse> {
-  // Simulate network latency
-  await new Promise((resolve) => setTimeout(resolve, 600))
-
   const validation = validateWish({
     name: payload.name,
     message: payload.message,
@@ -67,15 +41,25 @@ export async function submitWish(payload: WishPayload): Promise<WishesResponse> 
   }
 
   try {
-    const record = saveWish({
-      name: payload.name.trim(),
-      message: payload.message.trim(),
+    const response = await fetch('/api/wishes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: payload.name.trim(),
+        message: payload.message.trim(),
+      }),
     })
-    return { success: true, data: toResult(record) }
+    const result = (await response.json()) as WishesResponse
+
+    if (!response.ok || !result.success) {
+      return { success: false, error: result.error ?? 'Could not submit your wish.' }
+    }
+
+    return result
   } catch {
     return {
       success: false,
-      error: 'Sorry, something went wrong. Please try again.',
+      error: 'Could not reach the server. Please try again.',
     }
   }
 }
@@ -83,19 +67,18 @@ export async function submitWish(payload: WishPayload): Promise<WishesResponse> 
 /**
  * fetchWishes
  *
- * Returns all stored wishes, newest first.
+ * Returns all wishes from the server, newest first.
  */
 export async function fetchWishes(): Promise<WishesListResponse> {
-  // Simulate network latency
-  await new Promise((resolve) => setTimeout(resolve, 400))
-
   try {
-    const all = getAllWishes()
-    // Newest first
-    const sorted = [...all].sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    )
-    return { success: true, wishes: sorted.map(toResult) }
+    const response = await fetch('/api/wishes')
+    const result = (await response.json()) as WishesListResponse
+
+    if (!response.ok || !result.success) {
+      return { success: false, error: result.error ?? 'Could not load wishes.' }
+    }
+
+    return result
   } catch {
     return {
       success: false,

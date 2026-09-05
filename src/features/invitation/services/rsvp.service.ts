@@ -1,13 +1,3 @@
-/* ============================================================
-   rsvp.service.ts
-   Client-side RSVP service.
-
-   Since this is a pure Vite SPA (no Next.js / no server),
-   persistence is handled via src/lib/db.ts (localStorage).
-   The service validates the payload and delegates to the db layer.
-   ============================================================ */
-
-import { saveRSVP, type RSVPRecord } from '../../../lib/db'
 import { validateRSVP } from '../../../lib/validation'
 
 export interface RSVPPayload {
@@ -18,22 +8,24 @@ export interface RSVPPayload {
 
 export interface RSVPResponse {
   success: boolean
-  data?: RSVPRecord
+  data?: RSVPResult
   error?: string
+}
+
+export interface RSVPResult {
+  id: string
+  name: string
+  attendance: RSVPPayload['attendance']
+  guestCount: number
+  createdAt: string
 }
 
 /**
  * submitRSVP
  *
- * Validates the payload server-side (in this context, client-side
- * since there is no backend), then persists the RSVP record.
- * Returns a structured response compatible with the async form flow.
+ * Validate for immediate UX feedback, then submit to the server API.
  */
 export async function submitRSVP(payload: RSVPPayload): Promise<RSVPResponse> {
-  // Simulate network latency for realistic UX
-  await new Promise((resolve) => setTimeout(resolve, 800))
-
-  // Validate (mirrors what a real API route would do)
   const validation = validateRSVP({
     name: payload.name,
     attendance: payload.attendance,
@@ -48,17 +40,26 @@ export async function submitRSVP(payload: RSVPPayload): Promise<RSVPResponse> {
   }
 
   try {
-    const record = saveRSVP({
-      name: payload.name.trim(),
-      attendance: payload.attendance,
-      guestCount: payload.guestCount,
+    const response = await fetch('/api/rsvp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: payload.name.trim(),
+        attendance: payload.attendance,
+        guestCount: payload.guestCount,
+      }),
     })
+    const result = (await response.json()) as RSVPResponse
 
-    return { success: true, data: record }
+    if (!response.ok || !result.success) {
+      return { success: false, error: result.error ?? 'Could not submit your RSVP.' }
+    }
+
+    return result
   } catch {
     return {
       success: false,
-      error: 'Sorry, something went wrong. Please try again.',
+      error: 'Could not reach the server. Please try again.',
     }
   }
 }
