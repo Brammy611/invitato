@@ -1,0 +1,157 @@
+﻿/* ============================================================
+   Countdown.module.css
+   COUNTING THE DAYS section — full-bleed photo background with
+   dark overlay, live countdown timer, and Remind Me button.
+   Visual reference: 6.png
+   ============================================================ */
+
+/* ── Section root ────────────────────────────────────────── */
+.countdown {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Background photograph ───────────────────────────────── */
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  z-index: 0;
+}
+
+/* ── Dark overlay ────────────────────────────────────────── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 8, 6, 0.62);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Foreground content ──────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-12) var(--space-6);
+  width: 100%;
+  text-align: center;
+}
+
+/* ── Heading ─────────────────────────────────────────────── */
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3.5vw, 1rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: rgba(245, 239, 233, 0.9);
+  margin: 0;
+}
+
+/* ── Completed state ─────────────────────────────────────── */
+.completeMessage {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-wide);
+  color: #fff;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Timer row ───────────────────────────────────────────── */
+.timerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+}
+
+/* Each unit block: number + label */
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 54px;
+}
+
+.number {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 10vw, 3.2rem);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  /* Subtle translucent slab */
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  min-width: 48px;
+  text-align: center;
+}
+
+.unitLabel {
+  font-family: var(--font-sans);
+  font-size: clamp(0.58rem, 1.8vw, 0.68rem);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-wide);
+  color: rgba(245, 239, 233, 0.75);
+  text-transform: capitalize;
+  margin-top: var(--space-2);
+}
+
+/* Colon separator */
+.colon {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 9vw, 3rem);
+  font-weight: var(--fw-bold);
+  color: rgba(255,255,255,0.6);
+  line-height: 1;
+  padding: var(--space-2) 4px 0;
+  /* Push down slightly to align with numbers */
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+/* ── Remind Me button ────────────────────────────────────── */
+.remindButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-pill);
+  color: rgba(245, 239, 233, 0.9);
+  font-family: var(--font-serif);
+  font-size: clamp(0.78rem, 2.5vw, 0.88rem);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-wide);
+  padding: var(--space-2) var(--space-8);
+  cursor: pointer;
+  transition:
+    background var(--transition-base),
+    border-color var(--transition-base);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.remindButton:hover,
+.remindButton:focus-visible {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.remindButton:focus-visible {
+  outline: 2px solid rgba(245, 239, 233, 0.6);
+  outline-offset: 3px;
+}

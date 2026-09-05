@@ -1,0 +1,281 @@
+﻿/* ============================================================
+   Story.module.css
+   OUR STORY section — vertical timeline with expand/collapse.
+   Visual reference: 5.png
+   ============================================================ */
+
+/* ── Section root ────────────────────────────────────────── */
+.story {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-primary);
+  padding-bottom: var(--space-24);
+  overflow: hidden;
+}
+
+/* ── Top botanical header ─────────────────────────────────── */
+.topDecoration {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+}
+
+.dividerLeft {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform-origin: left top;
+}
+
+.dividerRight {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: right top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  /* Mirror the left divider horizontally */
+  transform: scaleX(-1);
+  transform-origin: right top;
+}
+
+/* ── Section heading ─────────────────────────────────────── */
+.headingBlock {
+  text-align: center;
+  padding: var(--space-4) var(--space-6) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--lh-tight);
+}
+
+/* Thin decorative rule under the heading */
+.headingRule {
+  width: 60px;
+  height: 1.5px;
+  background: var(--color-text-primary);
+  border: none;
+  margin: 0;
+  opacity: 0.7;
+}
+
+/* ── Intro paragraph ─────────────────────────────────────── */
+.intro {
+  font-family: var(--font-serif);
+  font-size: clamp(0.88rem, 3vw, 1rem);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 28ch;
+  margin: var(--space-6) auto 0;
+  padding: 0 var(--space-6);
+}
+
+/* ── Timeline container ──────────────────────────────────── */
+.timeline {
+  position: relative;
+  margin-top: var(--space-10);
+  padding: 0 var(--space-6) 0 var(--space-6);
+}
+
+/* Vertical line — grows with content via pseudo-element on the wrapper */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--space-6) + 28px);   /* center of the circular marker */
+  top: 28px;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-text-primary);
+  opacity: 0.25;
+}
+
+/* ── Single timeline item ────────────────────────────────── */
+.timelineItem {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  column-gap: var(--space-4);
+  margin-bottom: var(--space-10);
+  position: relative;
+}
+
+/* ── Circular image marker ───────────────────────────────── */
+.markerCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marker {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--color-bg-card);
+  border: 2px solid rgba(59, 35, 20, 0.12);
+}
+
+.markerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder circle when no image */
+.markerPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-secondary) 0%,
+    var(--color-bg-card) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.markerPlaceholderDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-divider);
+}
+
+/* ── Content column ──────────────────────────────────────── */
+.contentCol {
+  min-width: 0;
+}
+
+.year {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 4vw, 1.35rem);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  /* Align year top with circle top */
+  padding-top: var(--space-2);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-2);
+}
+
+.description {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ── Expand / collapse ───────────────────────────────────── */
+.expandedContent {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 0.45s ease,
+    opacity 0.35s ease;
+}
+
+.expandedContent.isOpen {
+  max-height: 600px;   /* generous upper bound — text-based content */
+  opacity: 1;
+}
+
+.expandedText {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+  margin: var(--space-3) 0 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(91, 61, 46, 0.12);
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  padding: var(--space-2) 0 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: var(--space-2);
+  transition: color var(--transition-fast);
+}
+
+.toggleButton:hover,
+.toggleButton:focus-visible {
+  color: var(--color-text-primary);
+}
+
+.toggleButton:focus-visible {
+  outline: 2px solid var(--color-divider);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Bottom decorations ──────────────────────────────────── */
+.bottomDecoration {
+  position: absolute;
+  bottom: 0;
+  right: -12px;
+  width: 160px;
+  height: auto;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+.scriptTagline {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  color: var(--color-text-primary);
+  text-align: left;
+  padding: 0 0 var(--space-6) var(--space-6);
+  margin: 0;
+  opacity: 0.75;
+  line-height: 1.1;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}

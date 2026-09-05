@@ -1,0 +1,153 @@
+/* ============================================================
+   DesktopLayout.module.css
+   Split-screen layout — desktop only (>= 1024px)
+   ============================================================ */
+
+/* ── Root wrapper ───────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100dvh;        /* fill the full viewport height */
+  overflow: hidden;      /* prevent outer horizontal / vertical scroll */
+  background: var(--color-bg-secondary);
+}
+
+/* ── LEFT: Fixed image panel ────────────────────────────────── */
+.imagePanel {
+  /* Fills the remaining space, leaving a fixed mobile-width panel on the right */
+  flex: 1 1 auto;
+  max-width: calc(100% - var(--invite-width));
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.imagePanelInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fixedImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Subtle dark gradient — bottom & left edge — for text legibility */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(26, 22, 18, 0.72) 0%,
+      rgba(26, 22, 18, 0.28) 30%,
+      transparent 60%
+    ),
+    linear-gradient(
+      to right,
+      rgba(26, 22, 18, 0.35) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+/* Couple name + quote overlay — bottom-left */
+.imageCaption {
+  position: absolute;
+  bottom: var(--space-10);
+  left: var(--space-8);
+  right: var(--space-8);
+  color: var(--color-text-light);
+  pointer-events: none;
+}
+
+.imageCaptionLabel {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: var(--space-2);
+}
+
+.imageCaptionName {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.serifName {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-widest);
+}
+
+.scriptAnd {
+  font-family: var(--font-script);
+  font-weight: var(--fw-regular);
+  font-size: 1.4em;
+  letter-spacing: 0;
+  text-transform: none;
+  vertical-align: middle;
+}
+
+.imageCaptionQuote {
+  font-family: var(--font-serif);
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  font-style: italic;
+  font-weight: var(--fw-light);
+  line-height: var(--lh-relaxed);
+  opacity: 0.82;
+  max-width: 36ch;
+}
+
+/* ── RIGHT: Scrollable content panel ───────────────────────── */
+.contentPanel {
+  flex: 0 0 var(--invite-width);
+  width: var(--invite-width);
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  background: var(--color-bg-primary);
+
+  /* Thin custom scrollbar — webkit */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-divider) transparent;
+}
+
+.contentPanel::-webkit-scrollbar {
+  width: 4px;
+}
+.contentPanel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.contentPanel::-webkit-scrollbar-thumb {
+  background-color: var(--color-divider);
+  border-radius: var(--radius-pill);
+}
+
+/* Scroll lock — applied by Opening section when invitation is closed */
+.scrollLocked {
+  overflow: hidden;
+}
+
+/* Inner content wrapper — centers the 430px invitation strip */
+.contentInner {
+  width: 100%;
+  max-width: var(--invite-width);
+  margin: 0 auto;
+  min-height: 100%;
+  background: var(--color-bg-primary);
+}

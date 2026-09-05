@@ -1,0 +1,148 @@
+﻿/* ============================================================
+   Couple.module.css
+   THE GROOM & BRIDE section — vertically stacked editorial
+   profiles matching the 4.png visual reference.
+   ============================================================ */
+
+/* ── Section root ────────────────────────────────────────── */
+.couple {
+  width: 100%;
+  background: var(--color-bg-primary);
+  padding-bottom: var(--space-16);
+}
+
+/* ── Section heading ─────────────────────────────────────── */
+.sectionHeading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  margin: 0;
+  padding: var(--space-12) var(--space-6) var(--space-8);
+  line-height: var(--lh-tight);
+}
+
+/* ── Individual person profile block ─────────────────────── */
+.profile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Portrait photo ──────────────────────────────────────── */
+.photoWrapper {
+  width: calc(100% - var(--space-8) * 2);
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Name ────────────────────────────────────────────────── */
+.name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 5vw, 1.6rem);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin: var(--space-5) 0 0;
+  letter-spacing: 0.01em;
+  line-height: var(--lh-snug);
+  padding: 0 var(--space-6);
+}
+
+/* ── Family info block ───────────────────────────────────── */
+.family {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  padding: 0 var(--space-8);
+  text-align: center;
+}
+
+.familyLabel {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+}
+
+.familyAmpersand {
+  font-family: var(--font-script);
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  color: var(--color-text-secondary);
+  line-height: 1;
+  margin: var(--space-1) 0;
+}
+
+/* ── Social handle button ────────────────────────────────── */
+.socialButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-button);
+  color: var(--color-text-on-button);
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  padding: var(--space-3) var(--space-8);
+  border-radius: var(--radius-pill);
+  margin-top: var(--space-5);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition-base);
+}
+
+.socialButton:hover,
+.socialButton:focus-visible {
+  background: var(--color-bg-button-hover);
+}
+
+.socialButton:focus-visible {
+  outline: 2px solid var(--color-divider);
+  outline-offset: 3px;
+}
+
+/* ── Floral decorations ──────────────────────────────────── */
+
+/* Right-side large botanical — floats below-right of groom info */
+.floralRight {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+  align-self: flex-end;
+  margin-right: -var(--space-4);
+  margin-top: calc(-1 * var(--space-6));
+  /* Blend with cream background */
+  mix-blend-mode: multiply;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+/* Small centre divider between groom and bride */
+.floralDivider {
+  width: 52px;
+  height: auto;
+  object-fit: contain;
+  margin: var(--space-6) auto;
+  display: block;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  pointer-events: none;
+}

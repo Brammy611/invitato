@@ -1,0 +1,124 @@
+/* ============================================================
+   Closing.module.css
+   Final closing section — full-viewport background image, 
+   dark overlay, white centered text.
+   ============================================================ */
+
+.closing {
+  position: relative;
+  width: 100%;
+  /* Fallback to 100vh if svh is unsupported, but use svh primarily for mobile safeness */
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* Dark fallback background if image fails */
+  background-color: var(--color-bg-dark); 
+}
+
+/* ── Background image layer ──────────────────────────────── */
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* ── Dark overlay layer ──────────────────────────────────── */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45); /* Subtle dark neutral overlay */
+  z-index: 1;
+}
+
+/* ── Content container ───────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: var(--space-8) var(--space-6);
+  /* Shift higher up to avoid overlapping with bottom decoration */
+  margin-top: -20vh; 
+}
+
+/* ── Typography ──────────────────────────────────────────── */
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.25em; /* generous tracking as requested */
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 var(--space-6) 0;
+}
+
+.namesBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 7vw, 2.8rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  line-height: var(--lh-tight);
+}
+
+.and {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-weight: var(--fw-regular);
+  font-style: italic; /* pseudo-script treatment using existing font */
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.hashtag {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* ── Decorative bottom artwork ───────────────────────────── */
+.bottomDecoration {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; 
+  max-width: 450px;
+  max-height: 45vh;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+  /* Since we don't have a specific white version of the asset,
+     invert the existing dark one and make it white */
+  filter: brightness(0) invert(1) opacity(0.8);
+  object-fit: contain;
+  object-position: bottom center;
+}

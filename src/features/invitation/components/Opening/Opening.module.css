@@ -1,0 +1,130 @@
+﻿/* ============================================================
+   Opening.module.css
+   Full-viewport photographic cover — visual ref: opening.png
+   ============================================================ */
+
+/* ── Root section ────────────────────────────────────────── */
+.opening {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* Entry: fully visible */
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+/* Exit animation: fade up and out */
+.exiting {
+  opacity: 0;
+  transform: translateY(-24px);
+  pointer-events: none;
+}
+
+/* ── Background image ────────────────────────────────────── */
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Keep couple in upper-center — avoids cropping faces */
+  object-position: center 20%;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Vignette: subtle top + bottom darkening for text contrast */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(20, 16, 12, 0.45) 0%,
+      transparent 35%,
+      transparent 60%,
+      rgba(20, 16, 12, 0.55) 100%
+    );
+  pointer-events: none;
+}
+
+/* ── Text overlay — top ──────────────────────────────────── */
+.textTop {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-10) var(--space-6) 0;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+/* "RICKY and FELLYCIA" */
+.coupleNames {
+  margin: 0;
+  line-height: var(--lh-tight);
+  /* Allow name to wrap naturally in a narrow column */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0 0.3em;
+}
+
+/* "RICKY" / "FELLYCIA" — uppercase serif */
+.nameSerif {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.12em;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+}
+
+/* "and" — italic script treatment */
+.nameScript {
+  font-family: var(--font-script);
+  font-size: clamp(1.6rem, 7vw, 2.4rem);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  color: var(--color-text-light);
+  line-height: var(--lh-tight);
+  /* Optically align script baseline with serif caps */
+  transform: translateY(0.05em);
+  display: inline-block;
+}
+
+/* "#We are getting married" */
+.hashtag {
+  font-family: var(--font-sans);
+  font-size: clamp(0.65rem, 2vw, 0.78rem);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-wide);
+  color: rgba(245, 239, 233, 0.82);
+  margin: 0;
+  text-align: center;
+}
+
+/* ── CTA — bottom ────────────────────────────────────────── */
+.cta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 var(--space-10);
+}

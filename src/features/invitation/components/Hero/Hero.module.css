@@ -1,0 +1,203 @@
+﻿/* ============================================================
+   Hero.module.css
+   Hero section — first section after Opening is opened.
+   Visual reference: hero design with floral corner, editorial
+   couple names, polaroid-style photo card, and silk backdrop.
+   ============================================================ */
+
+/* ── Section root ────────────────────────────────────────── */
+.hero {
+  width: 100%;
+  background: var(--color-bg-primary);
+  overflow: hidden;
+
+  /* Fade-in entrance animation */
+  animation: heroFadeIn 0.8s ease both;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Floral corner decoration ────────────────────────────── */
+.floralCorner {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  object-position: top left;
+  pointer-events: none;
+  /* Blend the white background of the PNG with the bg */
+  mix-blend-mode: multiply;
+  opacity: 0.72;
+}
+
+/* ── Upper band (floral + greeting) ─────────────────────── */
+.upperBand {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-6);
+}
+
+/* ── Guest greeting ──────────────────────────────────────── */
+.greeting {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  /* push right of the floral element */
+  padding: var(--space-3) var(--space-6) 0;
+}
+
+.greetingLabel {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-wide);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.greetingName {
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ── Names block ─────────────────────────────────────────── */
+.namesBlock {
+  padding: var(--space-4) var(--space-6) 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.youreInvited {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* "RICKY and FELLYCIA" */
+.coupleNames {
+  margin: 0;
+  line-height: var(--lh-tight);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0 0.2em;
+}
+
+.nameSerif {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+}
+
+.nameScript {
+  font-family: var(--font-script);
+  font-size: clamp(2.2rem, 10vw, 3rem);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0;
+  line-height: var(--lh-tight);
+  /* Optically align script with serif */
+  transform: translateY(0.06em);
+  display: inline-block;
+}
+
+/* ── Quote ───────────────────────────────────────────────── */
+.quote {
+  font-family: var(--font-serif);
+  font-size: clamp(0.78rem, 2.5vw, 0.9rem);
+  font-style: italic;
+  font-weight: var(--fw-light);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 30ch;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ── Photo area ──────────────────────────────────────────── */
+.photoArea {
+  position: relative;
+  width: 100%;
+  /* Gives room for the rotated card shadow to breathe */
+  padding: var(--space-8) var(--space-8) var(--space-12);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  /* Silk/fabric-like radial gradient as the backdrop */
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(228, 220, 214, 0.6) 55%,
+    var(--color-bg-primary) 100%
+  );
+}
+
+/* ── Polaroid stack effect ───────────────────────────────── */
+.cardStack {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+
+/* Back card — slightly larger, rotated the other way */
+.cardBack {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transform: rotate(4deg) translateY(6px);
+  z-index: 0;
+}
+
+/* Front card — the actual polaroid frame */
+.card {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3) var(--space-3) var(--space-10);
+  transform: rotate(-2deg);
+  overflow: hidden;
+}
+
+.heroImage {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  border-radius: calc(var(--radius-md) - 4px);
+}

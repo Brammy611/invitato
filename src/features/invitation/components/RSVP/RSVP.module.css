@@ -1,0 +1,297 @@
+/* ============================================================
+   RSVP.module.css
+   RSVP section — warm beige background, botanical header,
+   centered form card. Visual reference: 11.png
+   ============================================================ */
+
+/* ── Section root ────────────────────────────────────────── */
+.rsvp {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-primary);
+  padding: var(--space-12) 0 var(--space-20);
+  overflow: hidden;
+}
+
+/* ── Top botanical header ─────────────────────────────────── */
+.topDecoration {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+  margin-bottom: var(--space-8);
+}
+
+.dividerLeft {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform-origin: left top;
+}
+
+.dividerRight {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: right top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform: scaleX(-1);
+  transform-origin: right top;
+}
+
+/* ── Heading block ───────────────────────────────────────── */
+.headingBlock {
+  text-align: center;
+  padding: 0 var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 5.5vw, 2rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--lh-tight);
+}
+
+.headingRule {
+  width: 64px;
+  height: 1.5px;
+  background: var(--color-text-primary);
+  border: none;
+  margin: 0;
+}
+
+/* ── Intro paragraph ─────────────────────────────────────── */
+.intro {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 32ch;
+  margin: 0 auto var(--space-8);
+  padding: 0 var(--space-6);
+}
+
+/* ── Form card container ─────────────────────────────────── */
+.formCard {
+  margin: 0 var(--space-6);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  /* Very subtle elevation to lift from warm background */
+  box-shadow: 0 2px 12px rgba(59, 35, 20, 0.06);
+}
+
+/* ── Field group ─────────────────────────────────────────── */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ── Label ───────────────────────────────────────────────── */
+.label {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+/* ── Text input ──────────────────────────────────────────── */
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-primary);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px var(--space-4);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.input:focus {
+  border-color: var(--color-text-secondary);
+  box-shadow: 0 0 0 3px rgba(91, 61, 46, 0.1);
+}
+
+.input.error {
+  border-color: #b94a4a;
+}
+
+/* ── Select ──────────────────────────────────────────────── */
+.select {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-primary);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px var(--space-4);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  outline: none;
+  appearance: auto;
+  cursor: pointer;
+}
+
+.select:focus {
+  border-color: var(--color-text-secondary);
+  box-shadow: 0 0 0 3px rgba(91, 61, 46, 0.1);
+}
+
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Radio group ─────────────────────────────────────────── */
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.radioInput {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── Field error message ─────────────────────────────────── */
+.fieldError {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: #b94a4a;
+  margin: 0;
+}
+
+/* ── Submit button ───────────────────────────────────────── */
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: #5B6B78;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.05em;
+  padding: 12px var(--space-6);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-base), opacity var(--transition-base);
+  margin-top: var(--space-2);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #4A5863;
+}
+
+.submitBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.submitBtn:focus-visible {
+  outline: 2px solid var(--color-divider);
+  outline-offset: 3px;
+}
+
+/* ── Submit icon ─────────────────────────────────────────── */
+.submitIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Success state ───────────────────────────────────────── */
+.successBox {
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.successIcon {
+  width: 48px;
+  height: 48px;
+  color: #6B8F5E;
+}
+
+.successTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 4vw, 1.3rem);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.successMessage {
+  font-family: var(--font-serif);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-relaxed);
+  max-width: 28ch;
+  margin: 0;
+}
+
+/* ── Form-level error banner ─────────────────────────────── */
+.formError {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: #b94a4a;
+  background: rgba(185, 74, 74, 0.07);
+  border: 1px solid rgba(185, 74, 74, 0.2);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+}

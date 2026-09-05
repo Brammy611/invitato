@@ -1,0 +1,177 @@
+﻿/* ============================================================
+   Event.module.css
+   THE WEDDING DAY section — vertically stacked event cards.
+   Visual reference: 7.png
+   ============================================================ */
+
+/* ── Section root ────────────────────────────────────────── */
+.event {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-primary);
+  padding: var(--space-12) 0 var(--space-20);
+  overflow: hidden;
+}
+
+/* ── Top botanical header ─────────────────────────────────── */
+.topDecoration {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+  margin-bottom: var(--space-8);
+}
+
+.dividerLeft {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform-origin: left top;
+}
+
+.dividerRight {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: right top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform: scaleX(-1);
+  transform-origin: right top;
+}
+
+/* ── Section heading ─────────────────────────────────────── */
+.headingBlock {
+  text-align: center;
+  padding: 0 var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--lh-tight);
+}
+
+/* Thin decorative rule under the heading */
+.headingRule {
+  width: 64px;
+  height: 1.5px;
+  background: var(--color-text-primary);
+  border: none;
+  margin: 0;
+}
+
+/* ── Intro paragraph ─────────────────────────────────────── */
+.intro {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 32ch;
+  margin: 0 auto var(--space-10);
+  padding: 0 var(--space-6);
+}
+
+/* ── Event cards container ───────────────────────────────── */
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  padding: 0 var(--space-6);
+}
+
+/* ── Single Event Card ───────────────────────────────────── */
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Very subtle shadow/glow to separate from background */
+  box-shadow: 0 4px 20px rgba(59, 35, 20, 0.05);
+}
+
+/* Event Icon */
+.icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: var(--space-4);
+  /* The icons in the reference appear to be dark brown/line-art */
+  opacity: 0.85;
+}
+
+/* Event Title (e.g. HOLY MATRIMONY) */
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 4.5vw, 1.3rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-2);
+}
+
+/* Event Date */
+.date {
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-1);
+}
+
+/* Event Time */
+.time {
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-6);
+}
+
+/* Venue Name */
+.venue {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 3vw, 1.05rem);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-1);
+  line-height: var(--lh-snug);
+}
+
+/* Venue Address & City */
+.address {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--lh-relaxed);
+  max-width: 30ch;
+}

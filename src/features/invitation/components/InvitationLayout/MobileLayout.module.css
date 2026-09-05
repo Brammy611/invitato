@@ -1,0 +1,30 @@
+﻿/* ============================================================
+   MobileLayout.module.css
+   Single-column layout — mobile / tablet (< 1024px)
+   ============================================================ */
+
+/* ── Root wrapper ───────────────────────────────────────────── */
+.wrapper {
+  width: 100%;
+  max-width: var(--invite-width);
+  min-height: 100svh;
+  margin: 0 auto;
+  background: var(--color-bg-primary);
+  overflow-x: hidden;
+
+  /* Normal vertical document scrolling — no fixed height */
+  overflow-y: visible;
+}
+
+/* Scroll lock — applied by Opening section when invitation is closed */
+.scrollLocked {
+  overflow: hidden;
+  height: 100svh;
+}
+
+/* On very small screens, expand to full width */
+@media (max-width: 374px) {
+  .wrapper {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,72 @@
+/* ============================================================
+   OpeningArrow.module.css
+   Minimal animated downward arrow + OPEN INVITATION label
+   ============================================================ */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-4);
+  /* Enlarge click/tap target without affecting visual */
+  margin: 0;
+  color: var(--color-text-light);
+
+  /* Subtle focus ring for keyboard accessibility */
+  outline: none;
+  border-radius: var(--radius-sm);
+}
+
+.wrapper:focus-visible {
+  outline: 2px solid rgba(245, 239, 233, 0.7);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Arrow container ─────────────────────────────────────── */
+.arrowContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 24px;
+  height: 40px;
+
+  /* Gentle float + fade animation to attract attention */
+  animation: arrowFloat 2s ease-in-out infinite;
+}
+
+.arrowIcon {
+  width: 28px;
+  height: 28px;
+  opacity: 0.85;
+}
+
+/* ── Label ───────────────────────────────────────────────── */
+.label {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: currentColor;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+/* ── Float animation ─────────────────────────────────────── */
+@keyframes arrowFloat {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 0.6;
+  }
+}

@@ -1,0 +1,285 @@
+/* ============================================================
+   Memories.module.css
+   Combined MEMORIES / MOMENTS section.
+   Includes: Gallery (A PORTRAIT OF US) and Media (Pre Wedding & Live Streaming).
+   ============================================================ */
+
+/* ── Section root ────────────────────────────────────────── */
+.memories {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-primary);
+  padding: var(--space-12) 0 var(--space-20);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Top botanical header ─────────────────────────────────── */
+.topDecoration {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+  margin-bottom: var(--space-8);
+}
+
+.dividerLeft {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform-origin: left top;
+}
+
+.dividerRight {
+  width: 44%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  object-position: right top;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  transform: scaleX(-1);
+  transform-origin: right top;
+}
+
+/* ── Subsection Header ───────────────────────────────────── */
+.headingBlock {
+  text-align: center;
+  padding: 0 var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 5.5vw, 2rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--lh-tight);
+}
+
+.headingRule {
+  width: 64px;
+  height: 1.5px;
+  background: var(--color-text-primary);
+  border: none;
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 30ch;
+  margin: 0 auto var(--space-6);
+  padding: 0 var(--space-6);
+}
+
+/* ── Gallery Subsection (A Portrait of Us) ───────────────── */
+.galleryContainer {
+  padding: 0 var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-16);
+}
+
+.mainImageWrapper {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(59, 35, 20, 0.1);
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--transition-base);
+}
+
+.thumbnailsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 480px;
+}
+
+.thumbnailButton {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: none;
+  padding: 0;
+  background: var(--color-bg-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-fast), filter var(--transition-base);
+}
+
+.thumbnailButton:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
+}
+
+.thumbnailButton:active {
+  transform: scale(0.96);
+}
+
+.thumbnailButton.active {
+  filter: brightness(1.1);
+}
+
+.thumbnailButton:not(.active) {
+  opacity: 0.6;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Media Subsection (Pre Wedding / Live Streaming) ─────── */
+.mediaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-16);
+  width: 100%;
+}
+
+.mediaContainer:last-child {
+  margin-bottom: 0;
+}
+
+/* Video Preview Block */
+.videoWrapper {
+  width: calc(100% - var(--space-6) * 2);
+  max-width: 480px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  margin: var(--space-4) auto var(--space-6);
+  box-shadow: 0 4px 16px rgba(59, 35, 20, 0.1);
+  background: var(--color-bg-dark);
+}
+
+.videoThumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8; /* Slight dim for play button contrast */
+  transition: opacity var(--transition-base);
+}
+
+/* Circular Play Button */
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform var(--transition-fast), background var(--transition-base);
+  z-index: 2;
+}
+
+.playButton:hover,
+.playButton:focus-visible {
+  background: #fff;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.playIcon {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-text-primary);
+  margin-left: 3px; 
+}
+
+/* Video Timestamp / Duration styling matching reference */
+.videoTimestamp {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+  color: #fff;
+  z-index: 2;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+/* YouTube Button */
+.youtubeButtonWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--space-6);
+}
+
+.youtubeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* Dark slate/gray-blue tone matching reference */
+  background: #5B6B78;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.02em;
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background var(--transition-base);
+}
+
+.youtubeButton:hover,
+.youtubeButton:focus-visible {
+  background: #4A5863;
+}
+
+.youtubeButton:focus-visible {
+  outline: 2px solid var(--color-divider);
+  outline-offset: 3px;
+}
+
+.youtubeIcon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
