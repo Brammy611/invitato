@@ -153,6 +153,7 @@ export interface GalleryImage {
 
 /** Photo gallery section */
 export interface Gallery {
+  [x: string]: ReactNode
   heading?: string
   images: GalleryImage[]
 }
