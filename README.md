@@ -1,141 +1,299 @@
 # Invitato
 
-Wedding invitation SPA with persistent RSVP and wishes storage.
+Invitato is a responsive wedding invitation website developed for the Invitato
+Software Engineer Homework Assessment.
 
-## Architecture
+## Features
 
-Frontend:
+- Responsive wedding invitation experience
+- RSVP submission with attendance and guest count
+- Public wishes submission and display
+- Client-side and server-side validation
+- Persistent PostgreSQL storage
+- Vercel Serverless Functions API
+
+## Technology Stack
 
 - React
 - TypeScript
 - Vite
-
-Backend:
-
 - Vercel Serverless Functions
-- `pg` PostgreSQL client
-
-Database:
-
 - PostgreSQL
-
-Request flow:
-
-```text
-Browser
-  -> React UI
-  -> Frontend service
-  -> /api/*
-  -> Vercel Serverless Function
-  -> PostgreSQL
-```
-
-PostgreSQL is the only persistence source. RSVP and wishes data is not stored in
-browser localStorage.
-
-## API
-
-| Method | Endpoint | Purpose |
-| --- | --- | --- |
-| POST | `/api/rsvp` | Validate and create an RSVP |
-| POST | `/api/wishes` | Validate and create a wish |
-| GET | `/api/wishes` | Return wishes newest first |
-
-The API validates request bodies independently from the client, uses parameterized
-SQL, and returns safe error messages without database details.
-
-## Database Setup
-
-1. Create a PostgreSQL database and obtain its connection string.
-2. Copy `.env.example` to `.env.local`.
-3. Set `DATABASE_URL` in `.env.local`.
-4. Run the schema against the database:
-
-   ```bash
-   psql "$DATABASE_URL" -f database/schema.sql
-   ```
-
-The schema creates `rsvps` and `wishes`, including validation constraints and a
-newest-first index for wishes.
+- `pg` PostgreSQL client
 
 ## Local Development
 
-Install dependencies:
+### Prerequisites
+
+Install the following tools:
+
+- Node.js
+- npm
+- PostgreSQL
+- Vercel CLI
+
+### Installation
+
+Clone the repository and install dependencies:
 
 ```bash
+git clone https://github.com/Brammy611/invitato.git
+cd invitato
 npm install
 ```
 
-For the frontend only:
+### Environment Setup
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+Set the PostgreSQL connection string in `.env.local`:
+
+```env
+DATABASE_URL=your_postgresql_connection_string
+```
+
+The environment file must remain local and must not contain production
+credentials in the repository.
+
+### Database Setup
+
+The schema is located at `database/schema.sql`. Run it against the configured
+database:
+
+```bash
+psql "$DATABASE_URL" -f database/schema.sql
+```
+
+The schema creates the following tables:
+
+- `rsvps`: guest name, attendance status, guest count, and submission timestamp
+- `wishes`: guest name, message, and submission timestamp
+
+### Run the Application
+
+Run the Vite frontend:
 
 ```bash
 npm run dev
 ```
 
-To run the Vite frontend together with Vercel Functions locally, with
-`DATABASE_URL` configured:
+To run the frontend with Vercel Serverless Functions locally:
 
 ```bash
 npm run dev:vercel
 ```
 
-The Vercel CLI is installed as a local development dependency. Use the URL
-printed by the command and test RSVP submission, wish submission, and wish
-loading there.
+The Vercel development server uses the local `DATABASE_URL` environment
+variable. Use the URL printed in the terminal to test the complete frontend and
+API flow.
 
-Build verification:
+### Build and Preview
+
+Create a production build:
 
 ```bash
 npm run build
 ```
 
-## Vercel Deployment
+Preview the production frontend locally:
 
-1. Import this repository into Vercel.
-2. Keep the Vite project defaults for the frontend build.
-3. Add `DATABASE_URL` in the Vercel project Environment Variables settings.
-4. Run `database/schema.sql` against the production PostgreSQL database.
-5. Deploy and verify `/api/rsvp` and `/api/wishes` through the invitation UI.
-
-The database connection string is read only by serverless functions and is never
-included in browser code.
-
-## AI Usage Disclosure
-
-AI coding tools were used as implementation assistance for inspecting the
-existing data flow, suggesting the API and database structure, implementing
-server-side validation and PostgreSQL integration, debugging TypeScript issues,
-and reviewing the resulting changes. The project decisions, verification, and
-final code review remain the developer's responsibility.
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm run preview
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Architecture
+
+Invitato uses a Vite React frontend and Vercel Serverless Functions for the
+backend API. PostgreSQL is the persistent source of truth for RSVP and wishes
+data. The browser does not use `localStorage` as the primary persistence layer.
+
+### Application Flow
+
+```text
+User
+ │
+ ▼
+React + TypeScript Frontend
+ │
+ ├── RSVP Form
+ │      │
+ │      ▼
+ │   POST /api/rsvp
+ │
+ └── Wishes
+        │
+        ├── GET /api/wishes
+        └── POST /api/wishes
+               │
+               ▼
+        Vercel Serverless Functions
+               │
+               ▼
+           PostgreSQL
+```
+
+### Frontend
+
+The frontend is responsible for:
+
+- Rendering the wedding invitation
+- Responsive UI, animations, and transitions
+- RSVP and wishes interactions
+- Client-side input validation
+- Communicating with the backend API
+
+React with TypeScript provides a component-based structure and type safety.
+Vite provides the frontend build tool and development workflow.
+
+### Backend
+
+The backend uses Vercel Serverless Functions to handle:
+
+- RSVP submission
+- Wishes submission
+- Retrieving submitted wishes
+- Server-side validation
+- Database interaction
+- Safe error handling
+
+### Database Connection
+
+Database access is performed server-side through a reusable PostgreSQL
+connection pool. The browser never connects directly to PostgreSQL, and
+`DATABASE_URL` is never exposed to client-side code.
+
+```text
+Frontend
+   │
+   ▼
+API
+   │
+   ▼
+PostgreSQL
+```
+
+## API Endpoints
+
+### Submit RSVP
+
+```text
+POST /api/rsvp
+```
+
+Submits a guest confirmation with the guest name, attendance status, and guest
+count.
+
+### Submit Wish
+
+```text
+POST /api/wishes
+```
+
+Submits a guest's name and message.
+
+### Get Wishes
+
+```text
+GET /api/wishes
+```
+
+Returns previously submitted wishes, sorted newest first.
+
+## Technical Decisions
+
+### Client and Server Validation
+
+Input validation is implemented at both the client and server layers:
+
+```text
+User Input
+   ↓
+Client Validation
+   ↓
+API Request
+   ↓
+Server Validation
+   ↓
+PostgreSQL Constraints
+```
+
+This prevents invalid input from being accepted when client-side validation is
+bypassed.
+
+### Parameterized SQL
+
+Database queries use parameterized values rather than interpolating user input
+directly into SQL statements.
+
+### Separation of Responsibilities
+
+The application separates:
+
+- UI components
+- Frontend services
+- API routes
+- Server-side validation
+- Database access
+
+This keeps the code easier to maintain, test, and debug.
+
+## Data Persistence
+
+RSVP and wishes data are stored persistently in PostgreSQL. The database is the
+single source of truth, and the application does not rely on browser
+`localStorage` for production persistence.
+
+## AI Tools and Agents Disclosure
+
+AI tools were used as development assistance during this project. The final
+implementation, architecture, code, and technical decisions were reviewed and
+verified by the developer.
+
+### ChatGPT
+
+ChatGPT was used for:
+
+- Application architecture discussions
+- Implementation approaches
+- Frontend and backend development assistance
+- Code structure suggestions
+- TypeScript and build error debugging
+- API and validation implementation guidance
+- UI/UX ideas
+- Animation and interaction ideas
+- Technical decision discussions
+- README and documentation assistance
+
+ChatGPT was used primarily as a development assistant and problem-solving tool.
+
+### Google Antigravity
+
+Google Antigravity was used for:
+
+- Assisting with code modifications
+- Connecting frontend services to API endpoints
+- Implementing API routes
+- PostgreSQL integration
+- Validation and error handling
+- Debugging
+- Refactoring
+
+### Developer Responsibility
+
+AI-generated suggestions and code were not treated as automatically correct.
+The developer remained responsible for:
+
+- Reviewing generated code
+- Understanding the implementation
+- Making technical decisions
+- Testing the application
+- Debugging issues
+- Verifying final behavior
+- Ensuring the implementation meets the homework requirements
+
+AI tools were used to accelerate development and exploration, while the final
+implementation was reviewed and adapted according to the project's requirements.
