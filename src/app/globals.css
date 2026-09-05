@@ -1,0 +1,134 @@
+﻿/* ============================================================
+   DESIGN TOKENS — Invitato Wedding Invitation
+   Visual source of truth extracted from UI design reference.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap');
+
+/* ------------------------------------------------------------
+   COLOR PALETTE
+   ------------------------------------------------------------ */
+:root {
+  /* Backgrounds */
+  --color-bg-primary:        #EAE2DA;
+  --color-bg-secondary:      #DDD5CB;
+  --color-bg-dark:           #1A1612;
+  --color-bg-overlay:        rgba(26, 22, 18, 0.55);
+  --color-bg-card:           #F2EDE8;
+  --color-bg-button:         #4A2C1A;
+  --color-bg-button-hover:   #3B2213;
+  --color-bg-tag:            #6B4226;
+
+  /* Text */
+  --color-text-primary:      #3B2314;
+  --color-text-secondary:    #5C3D2E;
+  --color-text-muted:        #8C6E5D;
+  --color-text-light:        #F5EFE9;
+  --color-text-on-button:    #F5EFE9;
+
+  /* Borders and Dividers */
+  --color-border:            rgba(91, 61, 46, 0.18);
+  --color-divider:           #B89B8A;
+
+  /* Countdown */
+  --color-countdown-text:    #F5EFE9;
+  --color-countdown-bg:      rgba(255, 255, 255, 0.12);
+
+  /* Decorative */
+  --color-floral-ink:        #3B2314;
+
+  /* Font families */
+  --font-serif:   'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:    'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --font-script:  'Great Vibes', cursive;
+
+  /* Font sizes — fluid scale */
+  --fs-hero-name:      clamp(2.5rem,  8vw, 3.5rem);
+  --fs-section-title:  clamp(1.4rem,  5vw, 1.75rem);
+  --fs-script-accent:  clamp(2rem,    7vw, 2.75rem);
+  --fs-countdown:      clamp(2.5rem,  9vw, 4rem);
+  --fs-h2:             clamp(1.1rem,  4vw, 1.25rem);
+  --fs-h3:             clamp(0.95rem, 3vw, 1.05rem);
+  --fs-body:           clamp(0.8rem,  2.5vw, 0.9rem);
+  --fs-caption:        clamp(0.7rem,  2vw, 0.78rem);
+  --fs-label:          clamp(0.65rem, 1.8vw, 0.72rem);
+
+  /* Font weights */
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Line heights */
+  --lh-tight:   1.15;
+  --lh-snug:    1.3;
+  --lh-normal:  1.55;
+  --lh-relaxed: 1.75;
+
+  /* Letter spacing */
+  --ls-tight:   -0.02em;
+  --ls-normal:   0em;
+  --ls-wide:     0.08em;
+  --ls-widest:   0.18em;
+
+  /* Spacing scale */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Section rhythm */
+  --section-padding-y:  var(--space-14);
+  --section-padding-x:  var(--space-6);
+  --section-gap:        var(--space-16);
+
+  /* Layout */
+  --invite-width:       430px;
+  --invite-width-sm:    100%;
+  --desktop-center-max: 1440px;
+
+  /* Border radius */
+  --radius-sm:         4px;
+  --radius-md:         8px;
+  --radius-lg:        16px;
+  --radius-xl:        24px;
+  --radius-pill:      999px;
+  --radius-image-card: 12px;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 3px rgba(59, 35, 20, 0.08);
+  --shadow-md:   0 4px 12px rgba(59, 35, 20, 0.12);
+  --shadow-lg:   0 8px 32px rgba(59, 35, 20, 0.18);
+  --shadow-card: 0 6px 24px rgba(59, 35, 20, 0.15);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Z-index layers */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-modal:   200;
+  --z-toast:   300;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS (mobile-first)
+   xs  — < 375px  : smallest phones
+   sm  — >= 375px : standard phones
+   md  — >= 768px : tablets
+   lg  — >= 1024px: desktop
+   xl  — >= 1440px: wide desktop
+   ------------------------------------------------------------ */
