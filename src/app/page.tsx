@@ -1,4 +1,10 @@
+import { useCallback, useRef } from 'react'
 import RootLayout from './layout'
+import Reveal from '../components/animation/Reveal'
+import BackgroundMusic, {
+  DEFAULT_MUSIC_SRC,
+  type BackgroundMusicHandle,
+} from '../components/common/BackgroundMusic'
 import InvitationLayout from '../features/invitation/components/InvitationLayout/InvitationLayout'
 import Opening from '../features/invitation/components/Opening/Opening'
 import Hero from '../features/invitation/components/Hero/Hero'
@@ -16,10 +22,17 @@ import { invitationData } from '../features/invitation/data/invitation.data'
 
 export default function Page() {
   const { isOpen, isExiting, openInvitation } = useInvitation()
+  const musicRef = useRef<BackgroundMusicHandle>(null)
   const isScrollLocked = !isOpen && !isExiting
+
+  const handleOpenInvitation = useCallback(() => {
+    void musicRef.current?.start()
+    openInvitation()
+  }, [openInvitation])
 
   return (
     <RootLayout>
+      <BackgroundMusic ref={musicRef} src={invitationData.music?.src || DEFAULT_MUSIC_SRC} />
       <InvitationLayout isScrollLocked={isScrollLocked}>
 
         {!isOpen && (
@@ -29,51 +42,59 @@ export default function Page() {
               opening: invitationData.opening,
             }}
             isExiting={isExiting}
-            onOpen={openInvitation}
+            onOpen={handleOpenInvitation}
           />
         )}
 
         {isOpen && (
           <>
-            <Hero
-              data={{
-                couple: invitationData.couple,
-                weddingDate: invitationData.weddingDate,
-              }}
-            />
-            <Couple data={{ couple: invitationData.couple }} />
-            <Story
-              data={{
-                story: invitationData.story,
-                couple: invitationData.couple,
-              }}
-            />
-            <Countdown data={{ weddingDate: invitationData.weddingDate }} />
-            <Event
+            <Reveal duration={1000}>
+              <Hero
+                data={{
+                  couple: invitationData.couple,
+                  weddingDate: invitationData.weddingDate,
+                }}
+              />
+            </Reveal>
+            <Reveal delay={90}><Couple data={{ couple: invitationData.couple }} /></Reveal>
+            <Reveal delay={120} variant="fade-right">
+              <Story
+                data={{
+                  story: invitationData.story,
+                  couple: invitationData.couple,
+                }}
+              />
+            </Reveal>
+            <Reveal delay={90} variant="fade">
+              <Countdown data={{ weddingDate: invitationData.weddingDate }} />
+            </Reveal>
+            <Reveal delay={90}><Event
               data={{
                 events: invitationData.events,
                 eventIntro: invitationData.eventIntro,
               }}
-            />
-            <Location data={{ location: invitationData.location }} />
-            <Memories
+            /></Reveal>
+            <Reveal delay={90} variant="fade-left"><Location data={{ location: invitationData.location }} /></Reveal>
+            <Reveal delay={120}><Memories
               data={{
                 gallery: invitationData.gallery,
                 media: invitationData.media,
               }}
-            />
-            <RSVP data={{ rsvp: invitationData.rsvp }} />
+            /></Reveal>
+            <Reveal delay={90}><RSVP data={{ rsvp: invitationData.rsvp }} /></Reveal>
 
             {/* Wishes — Kind Words */}
-            <Wishes data={{ wishes: invitationData.wishes }} />
+            <Reveal delay={90}><Wishes data={{ wishes: invitationData.wishes }} /></Reveal>
             
             {/* Final Section */}
-            <Closing
-              data={{
-                couple: invitationData.couple,
-                closing: invitationData.closing
-              }}
-            />
+            <Reveal variant="fade" duration={1100}>
+              <Closing
+                data={{
+                  couple: invitationData.couple,
+                  closing: invitationData.closing
+                }}
+              />
+            </Reveal>
           </>
         )}
 

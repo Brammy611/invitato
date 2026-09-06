@@ -10,20 +10,6 @@
   width: 100%;
   background: var(--color-bg-primary);
   overflow: hidden;
-
-  /* Fade-in entrance animation */
-  animation: heroFadeIn 0.8s ease both;
-}
-
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* ── Floral corner decoration ────────────────────────────── */
@@ -200,4 +186,14 @@
   object-position: center 15%;
   display: block;
   border-radius: calc(var(--radius-md) - 4px);
+  animation: heroImageReveal var(--motion-duration-slow) var(--motion-ease) both;
+}
+
+@keyframes heroImageReveal {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroImage { animation: none; }
 }

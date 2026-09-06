@@ -1,5 +1,7 @@
 ﻿import type { InvitationData } from '../../types/invitation.types'
+import Stagger from '../../../../components/animation/Stagger'
 import { formatEventDate, formatEventTime } from '../../../../lib/utils'
+import SectionHeader from '../../../../components/common/SectionHeader'
 import styles from './Event.module.css'
 
 interface EventProps {
@@ -19,27 +21,7 @@ export default function Event({ data }: EventProps) {
   return (
     <section className={styles.event} aria-labelledby="wedding-day-heading">
       
-      {/* ── Top botanical decorations ──────────── */}
-      <div className={styles.topDecoration} aria-hidden="true">
-        <img
-          src="/assets/images/icons/leftDivider.png"
-          alt=""
-          className={styles.dividerLeft}
-        />
-        <img
-          src="/assets/images/icons/rightDivider.png"
-          alt=""
-          className={styles.dividerRight}
-        />
-      </div>
-
-      {/* ── Section heading ────────────────────── */}
-      <div className={styles.headingBlock}>
-        <h2 id="wedding-day-heading" className={styles.heading}>
-          The Wedding Day
-        </h2>
-        <hr className={styles.headingRule} aria-hidden="true" />
-      </div>
+      <SectionHeader title="The Wedding Day" headingId="wedding-day-heading" />
 
       {/* ── Introduction ───────────────────────── */}
       {eventIntro && (
@@ -48,8 +30,9 @@ export default function Event({ data }: EventProps) {
 
       {/* ── Event Cards ────────────────────────── */}
       <div className={styles.cardsContainer}>
-        {events.map((event) => (
-          <div key={event.id} className={styles.card}>
+        <Stagger step={90}>
+          {events.map((event) => (
+            <div key={event.id} className={styles.card}>
             
             {/* Icon */}
             {event.icon && (
@@ -78,8 +61,9 @@ export default function Event({ data }: EventProps) {
               {event.city}
             </p>
 
-          </div>
-        ))}
+            </div>
+          ))}
+        </Stagger>
       </div>
 
     </section>

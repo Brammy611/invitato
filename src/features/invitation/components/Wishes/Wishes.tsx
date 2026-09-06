@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import type { InvitationData } from '../../types/invitation.types'
 import { fetchWishes } from '../../services/wishes.service'
 import type { WishResult } from '../../services/wishes.service'
+import SectionHeader from '../../../../components/common/SectionHeader'
 import WishesForm from './WishesForm'
 import WishesList from './WishesList'
 import styles from './Wishes.module.css'
@@ -63,27 +64,7 @@ export default function Wishes({ data }: WishesProps) {
   return (
     <section className={styles.wishes} aria-labelledby="wishes-heading">
 
-      {/* ── Top botanical decorations ──────────── */}
-      <div className={styles.topDecoration} aria-hidden="true">
-        <img
-          src="/assets/images/icons/leftDivider.png"
-          alt=""
-          className={styles.dividerLeft}
-        />
-        <img
-          src="/assets/images/icons/rightDivider.png"
-          alt=""
-          className={styles.dividerRight}
-        />
-      </div>
-
-      {/* ── Section heading ────────────────────── */}
-      <div className={styles.headingBlock}>
-        <h2 id="wishes-heading" className={styles.heading}>
-          {section?.heading ?? 'KIND WORDS'}
-        </h2>
-        <hr className={styles.headingRule} aria-hidden="true" />
-      </div>
+      <SectionHeader title={section?.heading ?? 'KIND WORDS'} headingId="wishes-heading" />
 
       {/* ── Introduction ───────────────────────── */}
       {section?.description && (

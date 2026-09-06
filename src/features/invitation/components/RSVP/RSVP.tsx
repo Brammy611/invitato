@@ -1,4 +1,5 @@
 import type { InvitationData } from '../../types/invitation.types'
+import SectionHeader from '../../../../components/common/SectionHeader'
 import RSVPForm from './RSVPForm'
 import styles from './RSVP.module.css'
 
@@ -20,27 +21,7 @@ export default function RSVP({ data }: RSVPProps) {
   return (
     <section className={styles.rsvp} aria-labelledby="rsvp-heading">
 
-      {/* ── Top botanical decorations ──────────── */}
-      <div className={styles.topDecoration} aria-hidden="true">
-        <img
-          src="/assets/images/icons/leftDivider.png"
-          alt=""
-          className={styles.dividerLeft}
-        />
-        <img
-          src="/assets/images/icons/rightDivider.png"
-          alt=""
-          className={styles.dividerRight}
-        />
-      </div>
-
-      {/* ── Section heading ────────────────────── */}
-      <div className={styles.headingBlock}>
-        <h2 id="rsvp-heading" className={styles.heading}>
-          {rsvp.heading ?? 'RSVP'}
-        </h2>
-        <hr className={styles.headingRule} aria-hidden="true" />
-      </div>
+      <SectionHeader title={rsvp.heading ?? 'RSVP'} headingId="rsvp-heading" />
 
       {/* ── Introduction ───────────────────────── */}
       {rsvp.description && (

@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import Stagger from '../../../../components/animation/Stagger'
 import type { InvitationData, MediaItem } from '../../types/invitation.types'
+import SectionHeader from '../../../../components/common/SectionHeader'
 import styles from './Memories.module.css'
 
 interface MemoriesProps {
@@ -56,8 +58,8 @@ function MediaSection({ item }: { item: MediaItem }) {
     <div className={styles.mediaContainer}>
       
       {/* ── Heading ──────────────────────────── */}
-      <div className={styles.headingBlock}>
-        <h3 className={styles.heading}>{item.title}</h3>
+      <div className={styles.mediaHeadingBlock}>
+        <h3 className={styles.mediaHeading}>{item.title}</h3>
       </div>
 
       {/* ── Video Preview ────────────────────── */}
@@ -124,27 +126,10 @@ export default function Memories({ data }: MemoriesProps) {
       {/* ── 1. A PORTRAIT OF US (Gallery) ────────────────────────── */}
       <div className={styles.galleryContainer}>
         
-        {/* Top botanical decorations */}
-        <div className={styles.topDecoration} aria-hidden="true">
-          <img
-            src="/assets/images/icons/leftDivider.png"
-            alt=""
-            className={styles.dividerLeft}
-          />
-          <img
-            src="/assets/images/icons/rightDivider.png"
-            alt=""
-            className={styles.dividerRight}
-          />
-        </div>
-
-        {/* Heading */}
-        <div className={styles.headingBlock}>
-          <h2 id="memories-heading" className={styles.heading}>
-            {gallery.heading || 'A Portrait of Us'}
-          </h2>
-          <hr className={styles.headingRule} aria-hidden="true" />
-        </div>
+        <SectionHeader
+          title={gallery.heading || 'A Portrait of Us'}
+          headingId="memories-heading"
+        />
 
         {/* Description */}
         {gallery.description && (
@@ -165,25 +150,27 @@ export default function Memories({ data }: MemoriesProps) {
         {/* Thumbnails */}
         {thumbnails.length > 0 && (
           <div className={styles.thumbnailsRow} role="tablist" aria-label="Gallery thumbnails">
-            {thumbnails.map((img) => {
-              const isActive = img.id === activeImageId
-              return (
-                <button
-                  key={img.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  className={`${styles.thumbnailButton} ${isActive ? styles.active : ''}`}
-                  onClick={() => setActiveImageId(img.id)}
-                >
-                  <img
-                    src={img.src}
-                    alt={`Thumbnail for ${img.alt}`}
-                    className={styles.thumbnailImage}
-                  />
-                </button>
-              )
-            })}
+            <Stagger step={80} variant="scale">
+              {thumbnails.map((img) => {
+                const isActive = img.id === activeImageId
+                return (
+                  <button
+                    key={img.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    className={`${styles.thumbnailButton} ${isActive ? styles.active : ''}`}
+                    onClick={() => setActiveImageId(img.id)}
+                  >
+                    <img
+                      src={img.src}
+                      alt={`Thumbnail for ${img.alt}`}
+                      className={styles.thumbnailImage}
+                    />
+                  </button>
+                )
+              })}
+            </Stagger>
           </div>
         )}
       </div>

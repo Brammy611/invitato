@@ -1,4 +1,5 @@
 ﻿import type { InvitationData } from '../../types/invitation.types'
+import SectionHeader from '../../../../components/common/SectionHeader'
 import styles from './Location.module.css'
 
 interface LocationProps {
@@ -18,27 +19,7 @@ export default function Location({ data }: LocationProps) {
   return (
     <section className={styles.location} aria-labelledby="location-heading">
 
-      {/* ── Top botanical decorations ──────────── */}
-      <div className={styles.topDecoration} aria-hidden="true">
-        <img
-          src="/assets/images/icons/leftDivider.png"
-          alt=""
-          className={styles.dividerLeft}
-        />
-        <img
-          src="/assets/images/icons/rightDivider.png"
-          alt=""
-          className={styles.dividerRight}
-        />
-      </div>
-
-      {/* ── Section heading ────────────────────── */}
-      <div className={styles.headingBlock}>
-        <h2 id="location-heading" className={styles.heading}>
-          Where to Find Us
-        </h2>
-        <hr className={styles.headingRule} aria-hidden="true" />
-      </div>
+      <SectionHeader title="Where to Find Us" headingId="location-heading" />
 
       {/* ── Introduction ───────────────────────── */}
       {location.introduction && (

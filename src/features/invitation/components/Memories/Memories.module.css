@@ -15,69 +15,6 @@
   flex-direction: column;
 }
 
-/* ── Top botanical header ─────────────────────────────────── */
-.topDecoration {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-  pointer-events: none;
-  margin-bottom: var(--space-8);
-}
-
-.dividerLeft {
-  width: 44%;
-  max-width: 160px;
-  height: auto;
-  object-fit: contain;
-  object-position: left top;
-  mix-blend-mode: multiply;
-  opacity: 0.7;
-  transform-origin: left top;
-}
-
-.dividerRight {
-  width: 44%;
-  max-width: 160px;
-  height: auto;
-  object-fit: contain;
-  object-position: right top;
-  mix-blend-mode: multiply;
-  opacity: 0.7;
-  transform: scaleX(-1);
-  transform-origin: right top;
-}
-
-/* ── Subsection Header ───────────────────────────────────── */
-.headingBlock {
-  text-align: center;
-  padding: 0 var(--space-6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-  margin-bottom: var(--space-6);
-}
-
-.heading {
-  font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 5.5vw, 2rem);
-  font-weight: var(--fw-bold);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-text-primary);
-  margin: 0;
-  line-height: var(--lh-tight);
-}
-
-.headingRule {
-  width: 64px;
-  height: 1.5px;
-  background: var(--color-text-primary);
-  border: none;
-  margin: 0;
-}
-
 .description {
   font-family: var(--font-serif);
   font-size: clamp(0.95rem, 3.5vw, 1.1rem);
@@ -88,6 +25,22 @@
   max-width: 30ch;
   margin: 0 auto var(--space-6);
   padding: 0 var(--space-6);
+}
+
+.mediaHeadingBlock {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.mediaHeading {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--lh-tight);
 }
 
 /* ── Gallery Subsection (A Portrait of Us) ───────────────── */

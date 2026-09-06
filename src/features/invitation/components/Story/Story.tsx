@@ -1,4 +1,5 @@
 ﻿import { useState } from 'react'
+import Stagger from '../../../../components/animation/Stagger'
 import type { InvitationData } from '../../types/invitation.types'
 import type { StoryItem } from '../../types/invitation.types'
 import styles from './Story.module.css'
@@ -125,11 +126,13 @@ export default function Story({ data }: StoryProps) {
 
       {/* ── Timeline ───────────────────────────── */}
       <div className={styles.timeline} role="list">
-        {story.timeline.map((item, i) => (
-          <div key={`${item.year}-${i}`} role="listitem">
-            <TimelineEntry item={item} index={i} />
-          </div>
-        ))}
+        <Stagger step={90}>
+          {story.timeline.map((item, i) => (
+            <div key={`${item.year}-${i}`} role="listitem">
+              <TimelineEntry item={item} index={i} />
+            </div>
+          ))}
+        </Stagger>
       </div>
 
       {/* ── Script tagline (bottom-left) ─────────── */}

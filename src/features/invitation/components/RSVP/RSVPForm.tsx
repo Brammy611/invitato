@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import { submitRSVP } from '../../services/rsvp.service'
 import { validateRSVP } from '../../../../lib/validation'
+import Button from '../../../../components/ui/Button'
+import Input from '../../../../components/ui/Input'
+import Select from '../../../../components/ui/Select'
+import Stagger from '../../../../components/animation/Stagger'
 import styles from './RSVP.module.css'
 
 type AttendanceValue = 'ATTENDING' | 'NOT_ATTENDING'
@@ -148,12 +152,13 @@ export default function RSVPForm() {
   return (
     <form onSubmit={handleSubmit} noValidate aria-label="RSVP form">
 
+      <Stagger step={70}>
       {/* ── Name Field ─────────────────────────── */}
       <div className={styles.fieldGroup}>
         <label htmlFor="rsvp-name" className={styles.label}>
           Your Name
         </label>
-        <input
+        <Input
           id="rsvp-name"
           type="text"
           name="name"
@@ -166,7 +171,7 @@ export default function RSVPForm() {
           disabled={isLoading}
           aria-describedby={errors.name ? 'rsvp-name-error' : undefined}
           aria-invalid={!!errors.name}
-          className={`${styles.input} ${errors.name ? styles.error : ''}`}
+          error={!!errors.name}
         />
         {errors.name && (
           <p id="rsvp-name-error" className={styles.fieldError} role="alert">
@@ -224,7 +229,7 @@ export default function RSVPForm() {
         <label htmlFor="rsvp-guests" className={styles.label}>
           Number of Guests
         </label>
-        <select
+        <Select
           id="rsvp-guests"
           name="guestCount"
           value={form.guestCount}
@@ -232,14 +237,14 @@ export default function RSVPForm() {
           disabled={isLoading || form.attendance === 'NOT_ATTENDING'}
           aria-describedby={errors.guestCount ? 'rsvp-guests-error' : undefined}
           aria-invalid={!!errors.guestCount}
-          className={styles.select}
+          error={!!errors.guestCount}
         >
           {[1, 2, 3, 4, 5].map((n) => (
             <option key={n} value={n}>
               {n}
             </option>
           ))}
-        </select>
+        </Select>
         {errors.guestCount && (
           <p id="rsvp-guests-error" className={styles.fieldError} role="alert">
             {errors.guestCount}
@@ -253,21 +258,20 @@ export default function RSVPForm() {
           {formError}
         </p>
       )}
+      </Stagger>
 
       {/* ── Submit Button ────────────────────────── */}
-      <button
+      <Button
         type="submit"
         disabled={isLoading}
         aria-busy={isLoading}
         className={styles.submitBtn}
+        loading={isLoading}
+        loadingText="Submitting..."
+        icon={<SendIcon />}
       >
-        {isLoading ? 'Submitting...' : (
-          <>
-            Submit RSVP
-            <SendIcon />
-          </>
-        )}
-      </button>
+        Submit RSVP
+      </Button>
 
     </form>
   )

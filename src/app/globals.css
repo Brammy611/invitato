@@ -116,6 +116,13 @@
   --transition-base: 250ms ease;
   --transition-slow: 400ms ease;
 
+   /* Motion */
+   --motion-duration: 820ms;
+   --motion-duration-slow: 1100ms;
+   --motion-stagger: 90ms;
+   --motion-distance: 24px;
+   --motion-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
   /* Z-index layers */
   --z-base:    0;
   --z-raised:  10;

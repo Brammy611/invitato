@@ -1,4 +1,5 @@
 ﻿import type { InvitationData } from '../../types/invitation.types'
+import Stagger from '../../../../components/animation/Stagger'
 import { useCountdown } from '../../hooks/useCountdown'
 import styles from './Countdown.module.css'
 
@@ -63,6 +64,7 @@ export default function Countdown({ data }: CountdownProps) {
             aria-label={`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`}
             aria-live="off"
           >
+            <Stagger step={70} variant="fade-up">
             {/* Days */}
             <div className={styles.unit}>
               <span className={styles.number} aria-hidden="true">{days}</span>
@@ -92,6 +94,7 @@ export default function Countdown({ data }: CountdownProps) {
               <span className={styles.number} aria-hidden="true">{pad(seconds)}</span>
               <span className={styles.unitLabel}>Seconds</span>
             </div>
+            </Stagger>
           </div>
         )}
 

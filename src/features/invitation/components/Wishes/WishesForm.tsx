@@ -2,6 +2,10 @@ import { useState } from 'react'
 import { submitWish } from '../../services/wishes.service'
 import { validateWish } from '../../../../lib/validation'
 import type { WishResult } from '../../services/wishes.service'
+import Button from '../../../../components/ui/Button'
+import Input from '../../../../components/ui/Input'
+import Textarea from '../../../../components/ui/Textarea'
+import Stagger from '../../../../components/animation/Stagger'
 import styles from './Wishes.module.css'
 
 interface WishesFormProps {
@@ -116,12 +120,13 @@ export default function WishesForm({ onWishAdded }: WishesFormProps) {
         </p>
       )}
 
+      <Stagger step={70}>
       {/* ── Name field ────────────────────────────── */}
       <div className={styles.fieldGroup}>
         <label htmlFor="wish-name" className={styles.label}>
           Your Name
         </label>
-        <input
+        <Input
           id="wish-name"
           type="text"
           name="name"
@@ -134,7 +139,7 @@ export default function WishesForm({ onWishAdded }: WishesFormProps) {
           disabled={isLoading}
           aria-describedby={errors.name ? 'wish-name-error' : undefined}
           aria-invalid={!!errors.name}
-          className={`${styles.input} ${errors.name ? styles.error : ''}`}
+          error={!!errors.name}
         />
         {errors.name && (
           <p id="wish-name-error" className={styles.fieldError} role="alert">
@@ -148,7 +153,7 @@ export default function WishesForm({ onWishAdded }: WishesFormProps) {
         <label htmlFor="wish-message" className={styles.label}>
           Your Message
         </label>
-        <textarea
+        <Textarea
           id="wish-message"
           name="message"
           value={form.message}
@@ -160,7 +165,7 @@ export default function WishesForm({ onWishAdded }: WishesFormProps) {
           rows={4}
           aria-describedby={errors.message ? 'wish-message-error' : undefined}
           aria-invalid={!!errors.message}
-          className={`${styles.textarea} ${errors.message ? styles.error : ''}`}
+          error={!!errors.message}
         />
         {errors.message && (
           <p id="wish-message-error" className={styles.fieldError} role="alert">
@@ -175,21 +180,20 @@ export default function WishesForm({ onWishAdded }: WishesFormProps) {
           {formError}
         </p>
       )}
+      </Stagger>
 
       {/* ── Submit button ─────────────────────────── */}
-      <button
+        <Button
         type="submit"
         disabled={isLoading}
         aria-busy={isLoading}
         className={styles.submitBtn}
+        loading={isLoading}
+        loadingText="Sending..."
+        icon={<SendIcon />}
       >
-        {isLoading ? 'Sending…' : (
-          <>
-            Send Wishes
-            <SendIcon />
-          </>
-        )}
-      </button>
+        Send Wishes
+      </Button>
 
     </form>
   )
