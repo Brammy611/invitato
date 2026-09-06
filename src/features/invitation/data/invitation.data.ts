@@ -180,10 +180,10 @@ export const invitationData: InvitationData = {
      MUSIC (optional)
      ---------------------------------------------------------- */
   music: {
-    src: '/audio/background-music.mp3',
+    src: '/assets/audio/background-music.mp3',
     title: 'Beautiful in White',
     artist: 'Westlife',
-    autoplay: true,
+    autoplay: false,
   },
 
   /* ----------------------------------------------------------

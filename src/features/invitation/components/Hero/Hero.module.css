@@ -19,6 +19,7 @@
   left: -8px;
   width: 140px;
   height: 140px;
+  rotate: 180deg;
   object-fit: contain;
   object-position: top left;
   pointer-events: none;

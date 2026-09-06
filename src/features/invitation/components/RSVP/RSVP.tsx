@@ -7,14 +7,6 @@ interface RSVPProps {
   data: Pick<InvitationData, 'rsvp'>
 }
 
-/**
- * RSVP
- *
- * Section shell — handles layout, heading, botanical decorations,
- * and intro text. Delegates all form logic to RSVPForm.
- *
- * Visual reference: 11.png
- */
 export default function RSVP({ data }: RSVPProps) {
   const { rsvp } = data
 

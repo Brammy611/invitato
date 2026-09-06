@@ -12,16 +12,6 @@ function pad(n: number): string {
   return String(n).padStart(2, '0')
 }
 
-/**
- * Countdown
- *
- * COUNTING THE DAYS section.
- * Visual reference: 6.png — full-bleed opening.png background,
- * dark cinematic overlay, live four-unit countdown, Remind Me button.
- *
- * Countdown logic is handled by useCountdown.
- * Wedding date is consumed from invitation.data.ts (no hardcoding).
- */
 export default function Countdown({ data }: CountdownProps) {
   const { days, hours, minutes, seconds, isComplete } = useCountdown(
     data.weddingDate

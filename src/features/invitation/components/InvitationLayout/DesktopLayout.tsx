@@ -14,14 +14,6 @@ interface DesktopLayoutProps {
  * DesktopLayout
  *
  * Renders the split-screen layout used on screens >= 1024px:
- *
- *   ┌─────────────────────┬──────────────────────────┐
- *   │                     │                          │
- *   │   FIXED IMAGE PANEL │   SCROLLABLE CONTENT     │
- *   │   (left ~55%)       │   (right ~45%, 430px max)│
- *   │                     │                          │
- *   └─────────────────────┴──────────────────────────┘
- *
  * - Left panel: position:sticky, full viewport height, image cover.
  * - Right panel: scrollable column, cream background, 430px max-width.
  * - Entire component fills 100dvh; only the right column overflows.

@@ -1,10 +1,16 @@
 .wrapper {
   width: 100%;
   margin-bottom: var(--space-8);
+  pointer-events: none;
+}
+
+.dividerRow {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  pointer-events: none;
+  width: 100%;
+  min-height: 44px;
+  margin-bottom: var(--space-5);
 }
 
 .dividerLeft,
@@ -29,18 +35,17 @@
 }
 
 .headingBlock {
-  flex: 1;
-  min-width: 0;
   text-align: center;
-  padding: 0 var(--space-6);
+  width: 100%;
+  padding: 0 var(--space-4);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  margin-top: var(--space-2);
 }
 
 .heading {
+  max-width: 320px;
   font-family: var(--font-serif);
   font-size: clamp(1.4rem, 5.5vw, 2rem);
   font-weight: var(--fw-bold);

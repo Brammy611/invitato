@@ -48,25 +48,6 @@ function PersonProfile({ person, photoSrc }: { person: Person; photoSrc: string 
   )
 }
 
-/**
- * Couple
- *
- * THE GROOM & BRIDE section — vertically stacked editorial profiles.
- *
- * Visual reference: 4.png
- *
- * Layout:
- *   THE GROOM & BRIDE heading
- *   → Groom photo (full-width, rounded)
- *   → Groom name, family info, social button
- *   → Large floral decoration (right-aligned)
- *   → Small floral divider
- *   → Bride photo
- *   → Bride name, family info, social button
- *   → Large floral decoration
- *
- * All content sourced from invitation.data.ts.
- */
 export default function Couple({ data }: CoupleProps) {
   const { couple } = data
 
@@ -82,14 +63,6 @@ export default function Couple({ data }: CoupleProps) {
         photoSrc="/assets/images/couple/bride.png"
       />
 
-      {/* Large botanical decoration — bottom-right of groom profile */}
-      <img
-        src="/assets/images/icons/leftDecoration.png"
-        alt=""
-        aria-hidden="true"
-        className={styles.floralRight}
-      />
-
       {/* Small flower divider between groom and bride */}
       <img
         src="/assets/images/icons/middleDivider.png"
@@ -102,14 +75,6 @@ export default function Couple({ data }: CoupleProps) {
       <PersonProfile
         person={couple.bride}
         photoSrc="/assets/images/couple/groom.png"
-      />
-
-      {/* Large botanical decoration — bottom-right of bride profile */}
-      <img
-        src="/assets/images/icons/leftDecoration.png"
-        alt=""
-        aria-hidden="true"
-        className={styles.floralRight}
       />
 
     </section>

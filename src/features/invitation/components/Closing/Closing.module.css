@@ -7,7 +7,6 @@
 .closing {
   position: relative;
   width: 100%;
-  /* Fallback to 100vh if svh is unsupported, but use svh primarily for mobile safeness */
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
@@ -15,7 +14,6 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* Dark fallback background if image fails */
   background-color: var(--color-bg-dark); 
 }
 
@@ -52,7 +50,6 @@
   text-align: center;
   width: 100%;
   padding: var(--space-8) var(--space-6);
-  /* Shift higher up to avoid overlapping with bottom decoration */
   margin-top: -20vh; 
 }
 
@@ -104,21 +101,27 @@
   margin: 0;
 }
 
-/* ── Decorative bottom artwork ───────────────────────────── */
-.bottomDecoration {
+/* ── Decorative bottom-left artwork ─────────────────────── */
+.decorationCrop {
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%; 
-  max-width: 450px;
-  max-height: 45vh;
-  height: auto;
+  left: -32px;
+  width: min(78vw, 360px);
+  aspect-ratio: 1.25;
+  overflow: hidden;
   z-index: 2;
   pointer-events: none;
-  /* Since we don't have a specific white version of the asset,
-     invert the existing dark one and make it white */
+}
+
+.bottomDecoration {
+  display: block;
+  width: 100%;
+  height: auto;
   filter: brightness(0) invert(1) opacity(0.8);
-  object-fit: contain;
-  object-position: bottom center;
+}
+
+@media (min-width: 1024px) {
+  .decorationCrop {
+    width: min(30vw, 420px);
+  }
 }

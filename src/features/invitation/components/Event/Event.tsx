@@ -8,13 +8,6 @@ interface EventProps {
   data: Pick<InvitationData, 'events' | 'eventIntro'>
 }
 
-/**
- * Event
- *
- * THE WEDDING DAY section.
- * Visual reference: 7.png — warm ivory background, top botanical decorations,
- * centered heading + intro, and vertically stacked rounded event cards.
- */
 export default function Event({ data }: EventProps) {
   const { events, eventIntro } = data
 

@@ -9,7 +9,7 @@ import {
 import Button from '../ui/Button'
 import styles from './BackgroundMusic.module.css'
 
-export const DEFAULT_MUSIC_SRC = '/audio/background-music.mp3'
+export const DEFAULT_MUSIC_SRC = '/assets/audio/background-music.mp3'
 export const DEFAULT_MUSIC_VOLUME = 0.4
 
 type MusicStatus = 'not-started' | 'playing' | 'paused'

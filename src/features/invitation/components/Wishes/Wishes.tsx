@@ -11,20 +11,6 @@ interface WishesProps {
   data: Pick<InvitationData, 'wishes'>
 }
 
-/**
- * Wishes
- *
- * Section shell — heading, botanical decorations, intro,
- * form (WishesForm), and wishes list (WishesList).
- *
- * State management:
- * - wishes: the full list fetched from service
- * - isLoading: initial fetch in progress
- * - listError: fetch error message
- *
- * On form submit success, prepends the new wish to the top
- * of the list without a page refresh.
- */
 export default function Wishes({ data }: WishesProps) {
   const { wishes: section } = data
 

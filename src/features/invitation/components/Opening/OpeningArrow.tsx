@@ -5,14 +5,6 @@ interface OpeningArrowProps {
   label?: string
 }
 
-/**
- * OpeningArrow
- *
- * Animated downward arrow + "OPEN INVITATION" text.
- * Positioned at the bottom-center of the Opening section.
- *
- * Visual reference: opening.png — minimal thin arrow with label below.
- */
 export default function OpeningArrow({
   onClick,
   label = 'OPEN INVITATION',

@@ -5,12 +5,6 @@ interface ClosingProps {
   data: Pick<InvitationData, 'couple' | 'closing'>
 }
 
-/**
- * Closing
- *
- * Final section of the invitation.
- * Full-screen background image, dark overlay, white centered text.
- */
 export default function Closing({ data }: ClosingProps) {
   const { couple, closing } = data
 
@@ -57,12 +51,13 @@ export default function Closing({ data }: ClosingProps) {
 
       {/* ── Layer 4: Bottom Decorative Artwork ───────────── */}
       {closing.decorationImage && (
-        <img
-          src={closing.decorationImage}
-          alt=""
-          className={styles.bottomDecoration}
-          aria-hidden="true"
-        />
+        <div className={styles.decorationCrop} aria-hidden="true">
+          <img
+            src={closing.decorationImage}
+            alt=""
+            className={styles.bottomDecoration}
+          />
+        </div>
       )}
 
     </section>

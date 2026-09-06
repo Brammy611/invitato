@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Stagger from '../../../../components/animation/Stagger'
 import type { InvitationData, MediaItem } from '../../types/invitation.types'
 import SectionHeader from '../../../../components/common/SectionHeader'
@@ -104,11 +104,6 @@ function MediaSection({ item }: { item: MediaItem }) {
 
 /**
  * Memories / Moments Component
- * 
- * Order of subsections:
- * 1. A PORTRAIT OF US (Gallery)
- * 2. PRE WEDDING (Media)
- * 3. LIVE STREAMING (Media)
  */
 export default function Memories({ data }: MemoriesProps) {
   const { gallery, media } = data
@@ -116,6 +111,42 @@ export default function Memories({ data }: MemoriesProps) {
 
   // Local state for main gallery image
   const [activeImageId, setActiveImageId] = useState(images[0]?.id)
+  const [isImageVisible, setIsImageVisible] = useState(true)
+  const activeImageIdRef = useRef(images[0]?.id)
+  const transitionTimerRef = useRef<number | null>(null)
+
+  const changeImage = useCallback((nextImageId: string) => {
+    if (nextImageId === activeImageIdRef.current) return
+
+    setIsImageVisible(false)
+    if (transitionTimerRef.current !== null) {
+      window.clearTimeout(transitionTimerRef.current)
+    }
+
+    transitionTimerRef.current = window.setTimeout(() => {
+      activeImageIdRef.current = nextImageId
+      setActiveImageId(nextImageId)
+      window.requestAnimationFrame(() => setIsImageVisible(true))
+    }, 320)
+  }, [])
+
+  useEffect(() => {
+    if (images.length < 2) return
+
+    const rotateImages = () => {
+      const currentIndex = images.findIndex((image) => image.id === activeImageIdRef.current)
+      const nextImage = images[(currentIndex + 1) % images.length]
+      if (nextImage) changeImage(nextImage.id)
+    }
+
+    const intervalId = window.setInterval(rotateImages, 5000)
+    return () => {
+      window.clearInterval(intervalId)
+      if (transitionTimerRef.current !== null) {
+        window.clearTimeout(transitionTimerRef.current)
+      }
+    }
+  }, [changeImage, images])
 
   const activeImage = images.find((img) => img.id === activeImageId) || images[0]
   const thumbnails = images.slice(0, 3) // Safely grab up to 3 thumbnails
@@ -142,7 +173,7 @@ export default function Memories({ data }: MemoriesProps) {
             <img
               src={activeImage.src}
               alt={activeImage.alt}
-              className={styles.mainImage}
+                className={`${styles.mainImage} ${isImageVisible ? '' : styles.mainImageHidden}`}
             />
           </div>
         )}
@@ -160,7 +191,7 @@ export default function Memories({ data }: MemoriesProps) {
                     role="tab"
                     aria-selected={isActive}
                     className={`${styles.thumbnailButton} ${isActive ? styles.active : ''}`}
-                    onClick={() => setActiveImageId(img.id)}
+                    onClick={() => changeImage(img.id)}
                   >
                     <img
                       src={img.src}

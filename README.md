@@ -1,7 +1,6 @@
 # Invitato
 
-Invitato is a responsive wedding invitation website developed for the Invitato
-Software Engineer Homework Assessment.
+Invitato is a responsive wedding invitation website developed for the Invitato Software Engineer Homework Assessment.
 
 ## Features
 
@@ -26,7 +25,6 @@ Software Engineer Homework Assessment.
 ### Prerequisites
 
 Install the following tools:
-
 - Node.js
 - npm
 - PostgreSQL
@@ -47,10 +45,10 @@ npm install
 Copy the example environment file:
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Set the PostgreSQL connection string in `.env.local`:
+Set the PostgreSQL connection string in `.env`:
 
 ```env
 DATABASE_URL=your_postgresql_connection_string
@@ -107,9 +105,7 @@ npm run preview
 
 ## Architecture
 
-Invitato uses a Vite React frontend and Vercel Serverless Functions for the
-backend API. PostgreSQL is the persistent source of truth for RSVP and wishes
-data. The browser does not use `localStorage` as the primary persistence layer.
+Invitato uses a Vite React frontend and Vercel Serverless Functions for the backend API. PostgreSQL is the persistent source of truth for RSVP and wishes data. The browser does not use `localStorage` as the primary persistence layer.
 
 ### Application Flow
 
@@ -138,33 +134,36 @@ React + TypeScript Frontend
 
 ### Frontend
 
-The frontend is responsible for:
+Frontend digunakan untuk menangani seluruh tampilan dan interaksi pada wedding invitation, termasuk:
 
-- Rendering the wedding invitation
-- Responsive UI, animations, and transitions
-- RSVP and wishes interactions
-- Client-side input validation
-- Communicating with the backend API
+- Menampilkan halaman wedding invitation
+- Responsive UI, animation, dan transition
+- Interaksi RSVP dan wishes
+- Validasi input dari sisi client
+- Komunikasi dengan backend API
 
-React with TypeScript provides a component-based structure and type safety.
-Vite provides the frontend build tool and development workflow.
+Project ini menggunakan React dengan TypeScript agar struktur component lebih mudah dikelola dan membantu menjaga type safety.
+
+Vite digunakan sebagai build tool sekaligus development environment untuk frontend.
 
 ### Backend
 
-The backend uses Vercel Serverless Functions to handle:
+Backend menggunakan Vercel Serverless Functions untuk menangani kebutuhan API, seperti:
 
-- RSVP submission
-- Wishes submission
-- Retrieving submitted wishes
-- Server-side validation
-- Database interaction
-- Safe error handling
+- Menyimpan data RSVP
+- Menyimpan wishes
+- Mengambil wishes yang sudah dikirim
+- Validasi data dari sisi server
+- Interaksi dengan database
+- Menangani error dengan aman
 
 ### Database Connection
 
-Database access is performed server-side through a reusable PostgreSQL
-connection pool. The browser never connects directly to PostgreSQL, and
-`DATABASE_URL` is never exposed to client-side code.
+Koneksi ke PostgreSQL dilakukan dari sisi server menggunakan reusable connection pool.
+
+Browser tidak pernah terhubung langsung ke PostgreSQL. `DATABASE_URL` juga hanya digunakan di server dan tidak pernah diekspos ke client.
+
+Alur sederhananya:
 
 ```text
 Frontend
@@ -184,8 +183,7 @@ PostgreSQL
 POST /api/rsvp
 ```
 
-Submits a guest confirmation with the guest name, attendance status, and guest
-count.
+Endpoint ini digunakan untuk mengirim konfirmasi kehadiran tamu, yang terdiri dari nama tamu, status kehadiran, dan jumlah tamu.
 
 ### Submit Wish
 
@@ -193,7 +191,7 @@ count.
 POST /api/wishes
 ```
 
-Submits a guest's name and message.
+Endpoint ini digunakan untuk mengirim nama dan pesan dari tamu.
 
 ### Get Wishes
 
@@ -201,13 +199,13 @@ Submits a guest's name and message.
 GET /api/wishes
 ```
 
-Returns previously submitted wishes, sorted newest first.
+Endpoint ini digunakan untuk mengambil wishes yang sudah dikirim sebelumnya. Data diurutkan dari yang paling baru.
 
 ## Technical Decisions
 
 ### Client and Server Validation
 
-Input validation is implemented at both the client and server layers:
+Validasi input dilakukan di dua sisi, yaitu client dan server.
 
 ```text
 User Input
@@ -221,79 +219,79 @@ Server Validation
 PostgreSQL Constraints
 ```
 
-This prevents invalid input from being accepted when client-side validation is
-bypassed.
+Validasi di sisi server tetap diperlukan karena validasi client dapat dilewati atau dimanipulasi oleh user.
 
 ### Parameterized SQL
 
-Database queries use parameterized values rather than interpolating user input
-directly into SQL statements.
+Query ke database menggunakan parameterized values, bukan memasukkan input user secara langsung ke dalam SQL query.
+
+Hal ini digunakan untuk menjaga query tetap aman ketika memproses data dari user.
 
 ### Separation of Responsibilities
 
-The application separates:
+Codebase dipisahkan berdasarkan tanggung jawabnya, seperti:
 
-- UI components
-- Frontend services
-- API routes
-- Server-side validation
-- Database access
+UI components
+Frontend services
+API routes
+Server-side validation
+Database access
 
-This keeps the code easier to maintain, test, and debug.
+Dengan pemisahan ini, setiap bagian memiliki tanggung jawab yang lebih jelas sehingga lebih mudah untuk dikembangkan, di-test, dan di-debug.
 
 ## Data Persistence
 
-RSVP and wishes data are stored persistently in PostgreSQL. The database is the
-single source of truth, and the application does not rely on browser
-`localStorage` for production persistence.
+Data RSVP dan wishes disimpan secara persistent di PostgreSQL.
+
+Database digunakan sebagai single source of truth. Untuk persistence production, aplikasi tidak menggunakan browser 'localStorage'.
 
 ## AI Tools and Agents Disclosure
 
-AI tools were used as development assistance during this project. The final
-implementation, architecture, code, and technical decisions were reviewed and
-verified by the developer.
+Dalam proses pengerjaan homework ini, saya menggunakan beberapa AI tools sebagai development assistant.
+
+AI digunakan untuk membantu proses eksplorasi, problem solving, debugging, dan development. Namun, hasil dari AI tidak langsung dianggap benar. Final implementation, architecture, code, dan technical decisions tetap saya review dan sesuaikan dengan kebutuhan project.
 
 ### ChatGPT
 
-ChatGPT was used for:
+ChatGPT saya gunakan untuk membantu:
 
-- Application architecture discussions
-- Implementation approaches
-- Frontend and backend development assistance
-- Code structure suggestions
-- TypeScript and build error debugging
-- API and validation implementation guidance
-- UI/UX ideas
-- Animation and interaction ideas
-- Technical decision discussions
-- README and documentation assistance
+- Diskusi mengenai application architecture
+- Menentukan implementation approach
+- Membantu proses frontend dan backend development
+- Memberikan saran mengenai code structure
+- Membantu debugging TypeScript dan build error
+- Membantu implementasi API dan validation
+- Eksplorasi UI/UX
+- Eksplorasi animation dan interaction
+- Diskusi technical decisions
+- Membantu penyusunan README dan dokumentasi
 
-ChatGPT was used primarily as a development assistant and problem-solving tool.
+Saya menggunakan ChatGPT terutama sebagai development assistant dan problem-solving partner selama proses pengerjaan.
 
 ### Google Antigravity
 
-Google Antigravity was used for:
+Google Antigravity saya gunakan untuk membantu proses development secara langsung, terutama dalam:
 
-- Assisting with code modifications
-- Connecting frontend services to API endpoints
-- Implementing API routes
-- PostgreSQL integration
-- Validation and error handling
+- Code modification
+- Menghubungkan frontend service dengan API endpoint
+- Implementasi API routes
+- Integrasi PostgreSQL
+- Validation dan error handling
 - Debugging
-- Refactoring
+- Refactoring code
 
 ### Developer Responsibility
 
-AI-generated suggestions and code were not treated as automatically correct.
-The developer remained responsible for:
+AI-generated suggestions dan code tidak saya anggap sebagai hasil akhir tanpa review.
 
-- Reviewing generated code
-- Understanding the implementation
-- Making technical decisions
-- Testing the application
-- Debugging issues
-- Verifying final behavior
-- Ensuring the implementation meets the homework requirements
+Saya tetap bertanggung jawab terhadap:
 
-AI tools were used to accelerate development and exploration, while the final
-implementation was reviewed and adapted according to the project's requirements.
+- Review terhadap code yang dihasilkan
+- Memahami implementation yang digunakan
+- Menentukan technical decisions
+- Testing aplikasi
+- Debugging
+- Memastikan behavior aplikasi berjalan sesuai kebutuhan
+- Memastikan implementation memenuhi requirement homework
+
+AI tools digunakan untuk mempercepat proses development dan eksplorasi solusi, sementara final implementation tetap saya review, test, dan sesuaikan dengan kebutuhan project.

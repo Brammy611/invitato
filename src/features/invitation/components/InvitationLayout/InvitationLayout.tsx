@@ -16,18 +16,6 @@ interface InvitationLayoutProps {
 /** Breakpoint (px) at which the desktop split-screen activates */
 const DESKTOP_BREAKPOINT = 1024
 
-/**
- * InvitationLayout
- *
- * Root layout selector for the wedding invitation.
- * Renders DesktopLayout or MobileLayout based on viewport width.
- *
- * - Desktop (>= 1024px): split-screen with fixed left image panel.
- * - Mobile  (<  1024px): full-width single-column, normal scroll.
- *
- * Children are passed straight through to whichever layout is active.
- * No invitation section content is hardcoded here.
- */
 export default function InvitationLayout({
   children,
   isScrollLocked = false,

@@ -5,30 +5,6 @@ interface HeroProps {
   data: Pick<InvitationData, 'couple' | 'weddingDate'>
 }
 
-/**
- * Hero
- *
- * The first section revealed after the user opens the invitation.
- * Reproduces the editorial wedding design:
- *
- *  ┌──────────────────────────────┐
- *  │ [floral corner art]          │
- *  │    Dear Mr/Mrs/Ms.           │
- *  │       Invitato               │
- *  │                              │
- *  │    YOU'RE INVITED            │
- *  │  RICKY  and  FELLYCIA        │
- *  │  "I was sound asleep…"       │
- *  │                              │
- *  │  ┌──────────────────────┐    │
- *  │  │  [couple photo card] │    │
- *  │  │  white polaroid frame│    │
- *  │  └──────────────────────┘    │
- *  └──────────────────────────────┘
- *
- * All content is sourced from invitation.data.ts.
- * No wedding details are hardcoded here.
- */
 export default function Hero({ data }: HeroProps) {
   const { couple } = data
   const groomDisplay = couple.groom.displayName.toUpperCase()
@@ -41,11 +17,11 @@ export default function Hero({ data }: HeroProps) {
       <div className={styles.upperBand}>
         {/* Floral corner art (corner.png — lily line illustration) */}
         <img
-          src="/assets/images/icons/corner.png"
-          alt=""
-          className={styles.floralCorner}
-          aria-hidden="true"
-        />
+            src="/assets/images/icons/corner.png"
+            alt=""
+            className={styles.floralCorner}
+            aria-hidden="true"
+          />
 
         {/* Guest greeting — "Dear Mr/Mrs/Ms. / Invitato" */}
         <div className={styles.greeting}>

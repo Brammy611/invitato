@@ -6,13 +6,6 @@ interface LocationProps {
   data: Pick<InvitationData, 'location'>
 }
 
-/**
- * Location
- *
- * WHERE TO FIND US section.
- * Visual reference: 8.png — warm ivory background, top botanical decorations,
- * centered heading + intro, map preview, and address with external link button.
- */
 export default function Location({ data }: LocationProps) {
   const { location } = data
 
